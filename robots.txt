@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dinetrack.app/sitemap.xml
+Sitemap: https://ruchik007.github.io/dinetrack-legal/sitemap.xml
