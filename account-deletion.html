@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Delete DineTrack account</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 40px auto; padding: 0 16px; color: #222; }
+    h1 { font-size: 1.5rem; }
+    code { background: #f3f3f3; padding: 2px 6px; }
+  </style>
+</head>
+<body>
+  <h1>Delete your DineTrack restaurant account</h1>
+  <p>
+    Google Play requires a way to delete your account outside the app.
+    Sign in on a device as the <strong>owner</strong> and use
+    <em>More → Delete Outlet &amp; Account</em>, or email
+    <a href="mailto:privacy@dinetrack.app">privacy@dinetrack.app</a>
+    from the registered owner address with your Outlet ID.
+  </p>
+  <p>
+    Server-side deletion is the RPC <code>delete_restaurant_account</code>
+    and only runs when the JWT email matches <code>restaurants.owner_email</code>.
+  </p>
+</body>
+</html>
