@@ -79,11 +79,16 @@
   </div>
   <dialog id="dlg">
     <form method="dialog" id="form">
-      <h3>Confirm order</h3>
+      <h3>Your details</h3>
+      <label>Name</label>
+      <input id="guestName" name="name" required maxlength="40" placeholder="Your name" autocomplete="name" />
+      <label>Mobile number</label>
+      <input id="guestPhone" name="phone" required inputmode="tel" maxlength="13" placeholder="10-digit mobile" autocomplete="tel" />
       <label>Table (optional)</label>
       <input id="table" name="table" placeholder="Table number or name" />
       <label>Note</label>
       <textarea id="note" rows="2" maxlength="240" placeholder="Spice, no onion…"></textarea>
+      <p class="sub">We use your name and number only to confirm this order at the counter.</p>
       <p id="dlgErr" style="color:#ffb4a2"></p>
       <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
         <button value="cancel" type="submit">Cancel</button>
@@ -183,6 +188,10 @@
     document.getElementById('send').addEventListener('click', async () => {
       const err = document.getElementById('dlgErr');
       err.textContent = '';
+      const name = document.getElementById('guestName').value.trim();
+      const phone = document.getElementById('guestPhone').value.replace(/\D/g, '');
+      if (name.length < 2) { err.textContent = 'Enter your name'; return; }
+      if (phone.length < 10) { err.textContent = 'Enter a valid mobile number'; return; }
       const items = [];
       cart.forEach((line) => items.push({ id: line.id, qty: line.qty }));
       try {
@@ -191,10 +200,12 @@
           p_table: document.getElementById('table').value || null,
           p_items: items,
           p_note: document.getElementById('note').value || null,
+          p_guest_name: name,
+          p_guest_phone: phone,
         });
         document.getElementById('dlg').close();
         document.querySelector('main').innerHTML =
-          '<div class="ok"><h2>Order ' + escapeHtml(out.order_number) + '</h2><p>Sent to the kitchen. Pay at the counter.</p></div>';
+          '<div class="ok"><h2>Order ' + escapeHtml(out.order_number) + '</h2><p>Thanks, ' + escapeHtml(name) + '. We have your order. Pay at the counter.</p></div>';
         document.getElementById('bar').classList.remove('show');
         cart.clear();
       } catch (e) {
