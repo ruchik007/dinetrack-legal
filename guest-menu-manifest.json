@@ -1,0 +1,9 @@
+{
+  "name": "Wok & Tawa House",
+  "short_name": "Wok & Tawa",
+  "start_url": "./guest-menu.html",
+  "display": "standalone",
+  "background_color": "#1a1208",
+  "theme_color": "#c45c26",
+  "description": "Order from Wok & Tawa House"
+}
