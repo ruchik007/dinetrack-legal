@@ -1,4 +1,4 @@
-const CACHE = 'wok-tawa-menu-v3';
+const CACHE = 'wok-tawa-menu-v4';
 const SHELL = ['./guest-menu.html', './guest-menu-manifest.json'];
 
 self.addEventListener('install', (e) => {

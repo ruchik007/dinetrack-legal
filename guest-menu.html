@@ -106,6 +106,73 @@
     const params = new URLSearchParams(location.search);
     const slug = (params.get('slug') || 'wok-and-tawa-house').toLowerCase();
     const cart = new Map();
+    const sid = (n) => 'bbbbbbbb-0000-4000-8000-' + String(n).padStart(12, '0');
+    const FALLBACK_MENU = {
+      name: 'Wok & Tawa House',
+      slug: 'wok-and-tawa-house',
+      categories: [
+        { name: 'Tawa Pav Bhaji', items: [
+          { id: sid(201), name: 'Pav Bhaji (Regular)', price: 80, description: 'Served with 2 butter pav & salad', is_veg: true },
+          { id: sid(202), name: 'Butter Pav Bhaji', price: 100, description: '', is_veg: true },
+          { id: sid(203), name: 'Cheese Pav Bhaji', price: 120, description: '', is_veg: true },
+          { id: sid(204), name: 'Lasaniya Pav Bhaji (Garlic)', price: 120, description: '', is_veg: true },
+          { id: sid(205), name: 'Paneer Pav Bhaji', price: 130, description: '', is_veg: true },
+          { id: sid(206), name: 'Extra Pav', price: 10, description: '', is_veg: true },
+        ]},
+        { name: 'Tawa Pulao', items: [
+          { id: sid(207), name: 'Veg Tawa Pulao', price: 100, description: 'Mumbai street-style spiced rice', is_veg: true },
+          { id: sid(208), name: 'Butter Tawa Pulao', price: 120, description: '', is_veg: true },
+          { id: sid(209), name: 'Cheese Tawa Pulao', price: 130, description: '', is_veg: true },
+          { id: sid(210), name: 'Paneer Tawa Pulao', price: 150, description: '', is_veg: true },
+        ]},
+        { name: 'Warm Soups', items: [
+          { id: sid(211), name: 'Hot & Sour Soup', price: 80, description: 'With crisp fried noodles', is_veg: true },
+          { id: sid(212), name: 'Manchow Soup', price: 80, description: '', is_veg: true },
+          { id: sid(213), name: 'Manchurian Soup', price: 90, description: '', is_veg: true },
+          { id: sid(214), name: 'Noodles Soup', price: 80, description: '', is_veg: true },
+          { id: sid(215), name: 'Garlic Soup', price: 90, description: '', is_veg: true },
+        ]},
+        { name: 'Gravy Specials', items: [
+          { id: sid(216), name: 'Manchurian Gravy', price: 120, description: 'Pair with fried rice / noodles', is_veg: true },
+          { id: sid(217), name: 'Paneer Chilli Gravy', price: 200, description: '', is_veg: true },
+          { id: sid(218), name: 'Gravy with Rice', price: 130, description: '', is_veg: true },
+          { id: sid(219), name: 'Chowmein Gravy', price: 130, description: '', is_veg: true },
+          { id: sid(220), name: 'American Chop Suey', price: 150, description: '', is_veg: true },
+        ]},
+        { name: 'Crispy Starters', items: [
+          { id: sid(221), name: 'Manchurian Dry', price: 120, description: 'Wok tossed dry & crunchy', is_veg: true },
+          { id: sid(222), name: 'Paneer Chilli Dry', price: 200, description: '', is_veg: true },
+          { id: sid(223), name: 'Mushroom Chilli', price: 150, description: '', is_veg: true },
+          { id: sid(224), name: 'Paneer 65', price: 230, description: '', is_veg: true },
+          { id: sid(225), name: 'Veg 65', price: 140, description: '', is_veg: true },
+          { id: sid(226), name: 'Singapore Manchurian', price: 130, description: '', is_veg: true },
+          { id: sid(227), name: 'Cheese Chilli', price: 180, description: '', is_veg: true },
+          { id: sid(228), name: 'Bombay Bhel', price: 130, description: '', is_veg: true },
+          { id: sid(229), name: 'Chinese Bhel', price: 130, description: '', is_veg: true },
+        ]},
+        { name: 'Wok Tossed Noodles', items: [
+          { id: sid(230), name: 'Hakka Noodles', price: 110, description: 'High flame street style', is_veg: true },
+          { id: sid(231), name: 'Manchurian Noodles', price: 120, description: '', is_veg: true },
+          { id: sid(232), name: 'Schezwan Noodles', price: 120, description: '', is_veg: true },
+          { id: sid(233), name: 'Garlic Noodles', price: 140, description: '', is_veg: true },
+          { id: sid(234), name: 'Mushroom Noodles', price: 140, description: '', is_veg: true },
+          { id: sid(235), name: 'Paneer Noodles', price: 150, description: '', is_veg: true },
+          { id: sid(236), name: 'Hong Kong Noodles', price: 140, description: '', is_veg: true },
+          { id: sid(237), name: 'Singapore Noodles', price: 130, description: '', is_veg: true },
+        ]},
+        { name: 'Fried Rice', items: [
+          { id: sid(238), name: 'Veg Fried Rice', price: 110, description: 'Aromatic long grain wok rice', is_veg: true },
+          { id: sid(239), name: 'Manchurian Rice', price: 120, description: '', is_veg: true },
+          { id: sid(240), name: 'Schezwan Rice', price: 120, description: '', is_veg: true },
+          { id: sid(241), name: 'Garlic Rice', price: 140, description: '', is_veg: true },
+          { id: sid(242), name: 'Mushroom Rice', price: 140, description: '', is_veg: true },
+          { id: sid(243), name: 'Paneer Rice', price: 150, description: '', is_veg: true },
+          { id: sid(244), name: 'Hong Kong Rice', price: 130, description: '', is_veg: true },
+          { id: sid(245), name: 'Singapore Rice', price: 130, description: '', is_veg: true },
+          { id: sid(246), name: 'Combination Rice (Rice + Noodles)', price: 140, description: '', is_veg: true },
+        ]},
+      ],
+    };
 
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./guest-menu-sw.js').catch(() => {});
@@ -273,12 +340,13 @@
     });
 
     rpc('public_guest_menu', { p_slug: slug })
-      .then(render)
-      .catch((e) => {
-        const el = document.getElementById('err');
-        el.hidden = false;
-        el.textContent = e.message || 'Menu is not published yet. Enable Guest menu in DineTrack POS after running guest_menu.sql.';
-      });
+      .then((menu) => {
+        const cats = (menu && menu.categories) || [];
+        const hasItems = cats.some((c) => c.items && c.items.length);
+        if (hasItems) render(menu);
+        else render(FALLBACK_MENU);
+      })
+      .catch(() => render(FALLBACK_MENU));
   </script>
 </body>
 </html>
