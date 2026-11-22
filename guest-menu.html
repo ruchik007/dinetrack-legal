@@ -179,20 +179,55 @@
     }
 
     function dishPhoto(name) {
-      const n = String(name || '').toLowerCase();
-      let file = 'pav_bhaji.jpg';
-      if (n.includes('extra pav')) file = 'butter_pav.jpg';
-      else if (n.includes('paneer pav')) file = 'paneer_pav_bhaji.jpg';
-      else if (n.includes('pav bhaji')) file = 'pav_bhaji.jpg';
-      else if (n.includes('pulao')) file = 'tawa_pulao.jpg';
-      else if (n.includes('soup')) file = 'manchow_soup.jpg';
-      else if (n.includes('combination')) file = 'combination_rice.jpg';
-      else if (n.includes('bhel')) file = 'chinese_bhel.jpg';
-      else if (n.includes('chilli') || n.includes('paneer 65')) file = 'paneer_chilli.jpg';
-      else if (n.includes('dry') || n.includes('veg 65') || n.includes('singapore manchurian')) file = 'manchurian_dry.jpg';
-      else if (n.includes('gravy') || n.includes('chop suey') || n.includes('manchurian')) file = 'manchurian_gravy.jpg';
-      else if (n.includes('noodle')) file = 'hakka_noodles.jpg';
-      else if (n.includes('rice')) file = 'veg_fried_rice.jpg';
+      const photos = {
+        'pav bhaji (regular)': 'pav_bhaji_regular.jpg',
+        'butter pav bhaji': 'butter_pav_bhaji.jpg',
+        'cheese pav bhaji': 'cheese_pav_bhaji.jpg',
+        'lasaniya pav bhaji (garlic)': 'lasaniya_pav_bhaji.jpg',
+        'paneer pav bhaji': 'paneer_pav_bhaji.jpg',
+        'extra pav': 'extra_pav.jpg',
+        'veg tawa pulao': 'veg_tawa_pulao.jpg',
+        'butter tawa pulao': 'butter_tawa_pulao.jpg',
+        'cheese tawa pulao': 'cheese_tawa_pulao.jpg',
+        'paneer tawa pulao': 'paneer_tawa_pulao.jpg',
+        'hot & sour soup': 'hot_sour_soup.jpg',
+        'manchow soup': 'manchow_soup.jpg',
+        'manchurian soup': 'manchurian_soup.jpg',
+        'noodles soup': 'noodles_soup.jpg',
+        'garlic soup': 'garlic_soup.jpg',
+        'manchurian gravy': 'manchurian_gravy.jpg',
+        'paneer chilli gravy': 'paneer_chilli_gravy.jpg',
+        'gravy with rice': 'gravy_with_rice.jpg',
+        'chowmein gravy': 'chowmein_gravy.jpg',
+        'american chop suey': 'american_chop_suey.jpg',
+        'manchurian dry': 'manchurian_dry.jpg',
+        'paneer chilli dry': 'paneer_chilli_dry.jpg',
+        'mushroom chilli': 'mushroom_chilli.jpg',
+        'paneer 65': 'paneer_65.jpg',
+        'veg 65': 'veg_65.jpg',
+        'singapore manchurian': 'singapore_manchurian.jpg',
+        'cheese chilli': 'cheese_chilli.jpg',
+        'bombay bhel': 'bombay_bhel.jpg',
+        'chinese bhel': 'chinese_bhel.jpg',
+        'hakka noodles': 'hakka_noodles.jpg',
+        'manchurian noodles': 'manchurian_noodles.jpg',
+        'schezwan noodles': 'schezwan_noodles.jpg',
+        'garlic noodles': 'garlic_noodles.jpg',
+        'mushroom noodles': 'mushroom_noodles.jpg',
+        'paneer noodles': 'paneer_noodles.jpg',
+        'hong kong noodles': 'hong_kong_noodles.jpg',
+        'singapore noodles': 'singapore_noodles.jpg',
+        'veg fried rice': 'veg_fried_rice.jpg',
+        'manchurian rice': 'manchurian_rice.jpg',
+        'schezwan rice': 'schezwan_rice.jpg',
+        'garlic rice': 'garlic_rice.jpg',
+        'mushroom rice': 'mushroom_rice.jpg',
+        'paneer rice': 'paneer_rice.jpg',
+        'hong kong rice': 'hong_kong_rice.jpg',
+        'singapore rice': 'singapore_rice.jpg',
+        'combination rice (rice + noodles)': 'combination_rice.jpg',
+      };
+      const file = photos[String(name || '').trim().toLowerCase()] || 'veg_fried_rice.jpg';
       return './menu/' + file;
     }
 
